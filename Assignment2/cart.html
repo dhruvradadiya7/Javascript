@@ -1,0 +1,109 @@
+  
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shopping cart</title>
+    </head>
+    <body>
+        
+        <style>
+            .product-cart{
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                padding: 7px;
+                width:500px;
+                height:400px;
+            }
+            th.head{
+                width: 40%;
+            }
+        </style>
+
+        <div class="product-cart">
+            <h2>Assignment 2 Shopping Cart</h2>
+            <table style="width: 100%;">
+                <tr>
+                    <th>Id</th>
+                    <th class="head" style="text-align: center;">Name</th>
+                    <th class="head" style="text-align: center;">Price</th>
+                    <th class="head">Qty</th>
+                    <th class="head">Subtotal</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>White Jersey</td>
+                    <td id="product1-price">59.99</td>
+                    <td>
+                        <input type="number" id="product1-qty" value="1" />
+                    </td>
+                    <td id="product1-subtotal">59.99</td>
+                </tr>
+                <tr> 
+                    <td>2</td>
+                    <td>Blue Jacket</td>
+                    <td id="product2-price">129.99</td> 
+                    <td>
+                        <input type="number" id="product2-qty" value="1" />
+                    </td>
+                    <td id="product2-subtotal">129.99</td>
+                </tr>
+                <tr>
+                    <td colspan="5" >SubTotal $<span id="product-subtotal">319.97</span></td>
+                </tr>
+                <tr>
+                    <td colspan="5">GST $<span id="product-gst">16.00</span></td>
+                </tr>
+                <tr>
+                    <td colspan="5">PST $<span id="product-pst">25.20</span></td>
+                </tr>
+                <tr>
+                    <td colspan="5"><strong>Total $<span id="product-total">361.17</span></strong></td>
+                </tr>
+                <tr><td colspan="5">&nbsp;</td></tr>
+                <tr>
+                    <td colspan="5"><button onClick="cartTotal()" type="button">Recalculate</button></td>
+                </tr>
+                <tr><td colspan="5">&nbsp;</td></tr>
+                <tr>
+                    <td colspan="5"><strong>You get free shipping!</strong></td>
+                </tr>
+            </table>
+        </div>
+        
+        <script>
+           
+            function cartTotal(){
+    
+                var p1price = document.getElementById('product1-price').value;
+                var p1qty = document.getElementById('product1-qty').value;
+                var p2price = document.getElementById('product2-price').value;
+                var p2qty = document.getElementById('product2-qty').value;
+                // p1price = 59.99; 
+                // p2price = 129.99;   
+                var gst = 10;
+                var pst = 8.8;
+                
+                var product1subtotal = p1price*p1qty;
+                var product2subtotal = p2price*p2qty;
+                
+                document.getElementById('product1-subtotal').innerHTML = product1subtotal;
+                document.getElementById('product2-subtotal').innerHTML = product2subtotal;
+            
+                var subtotal = (product1subtotal+product2subtotal).toFixed(2);
+                
+                document.getElementById('product-subtotal').innerHTML = subtotal;
+                var gstTotal = ((subtotal/100)*gst).toFixed(2);
+                document.getElementById('product-gst').innerHTML = gstTotal;
+                var pstTotal = ((subtotal/100)*pst).toFixed(2);
+                document.getElementById('product-pst').innerHTML = pstTotal;
+            
+                var total = subtotal+gstTotal+pstTotal;
+                total = parseInt(total).toFixed(2);
+            
+                document.getElementById('product-total').innerHTML = total;
+            }
+       </script>
+    </body>
+</html>

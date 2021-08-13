@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="catalog-css.css">
+    <script src="products.js"></script>
+    <title>Products</title>
+    
+</head>
+<body>
+    <div class="main">
+        <h1>Assignment 2 Product Catalog</h1>
+        <button class="final" id="cart">Cart (0)</button>
+        <button onclick="reset()" class="final">Reset</button>
+        <div id="products_display">
+
+        
+        </div>
+    </div>
+    <script>
+        var cart = 0;
+         var stmt = "";
+        for(let i = 0;i < products.length;i++){
+                if(products[i].qty_in_stock){
+                    imageprefix = "products_images/"
+                    stmt = stmt + 
+                        `<div class="product">
+                            <img src="${imageprefix + products[i].pic}" alt="${products[i].name}" style="width:100%" height:50px width:50px>
+                            <p class="name">${products[i].name}</h1>
+                            <p class="description">${products[i].description}</p>
+                            <p class="price">$${products[i].price}</p>
+                            <button onclick="addToCart()" class="add_to_cart">Add to cart</button>
+                        </div>`
+                ;}
+            document.getElementById("products_display").innerHTML = stmt;    
+        }
+        function addToCart(){
+            ++cart;
+            document.getElementById("cart").innerText = `Cart (${cart})`
+        }
+        function reset(){
+            cart = 0;
+            document.getElementById("cart").innerText = `Cart (${cart})`
+        }
+    </script>
+</body>
+</html>

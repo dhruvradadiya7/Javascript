@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+​
+    <title>Weather today</title>
+​
+    <link
+      href="https://fonts.googleapis.com/css?family=Faster+One"
+      rel="stylesheet"
+    />
+     </head>
+​
+  <body>
+    <header></header>
+​
+    <section></section>
+​
+    <script>
+      const header = document.querySelector("header");
+      const section = document.querySelector("section");
+​
+      let requestURL = "https://goweather.herokuapp.com/weather/Curitiba";
+      let request = new XMLHttpRequest();
+      request.open("GET", requestURL); 
+      request.responseType = "json"; // now XHR knows the server will return JSON
+      request.send();
+​
+      request.onload = function () {
+        const weather_today = request.response;
+        populateHeader(weather_today);
+        showHeroes(weather_today);
+      };
+​
+      function populateHeader(obj) {
+        const myH1 = document.createElement("h1");
+        myH1.textContent = obj["temperature"];
+        header.appendChild(myH1);
+        const myPara = document.createElement('p');
+        myPara.textContent = 'Wind is : ' + obj['wind']   +         '   Day is : ' + obj['description'] ;
+        header.appendChild(myPara);
+      }
+​
+     
+      
+    </script>
+  </body>
+</html>

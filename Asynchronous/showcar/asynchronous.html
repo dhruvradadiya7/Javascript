@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"> </div>
+</body>
+</html>
+<script>
+function myDisplayer(some){
+    document.getElementById("demo").innerHTML = some;
+}
+
+function getfile(myCallback){
+    let req = new XMLHttpRequest();
+    req.open('GET', "showCar.html");
+    req.onload = function(){
+        if(req.status == 200){
+            myCallback(this.responseText);
+        }else{
+            myCallback("Error : " + req.status);
+        }
+    }
+    req.send();
+}
+
+getfile(myDisplayer);
+
+function loadAsset(url, type, callback) { 
+    let xhr = new XMLHttpRequest(); 
+    xhr.open('GET', url); 
+    xhr.responseType = type; 
+
+    xhr.onload = function() { 
+        callback(xhr.response); 
+    }; 
+    xhr.send(); 
+} 
+function displayImage(blob) { 
+    let objectURL = URL.createObjectURL(blob); 
+
+    let image = document.createElement('img'); 
+    image.src = objectURL; 
+    document. body. appendChild(image); 
+} 
+
+loadAsset('img/img-4.jpg', 'blob', displayImage); 
+
+</script>

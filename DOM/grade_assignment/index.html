@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grades</title>
+    <style>
+      body {
+        padding-top: 30px;
+      }
+      label,
+      input {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+      <label for="namel">Name : </label>
+      <input type="text" name="name" id="name"/>
+      <label for="marksl">Marks</label>
+      <input type="text" name="marks" id="marks" />
+      <br>
+      <button onclick="generateResult()">Result</button>
+      <br>
+      <p id="resultText">hello</p>
+      <script type="text/javascript">
+        function generateResult() {
+            let name = document.getElementById("name").value;
+            let marks = document.getElementById("marks").value;
+            let result ;
+            console.log(result);
+            console.log(marks);
+            if(marks<=100 && marks > 90){
+              result = `${name}, Your grade is A.`
+            }else if(marks<=90 && marks > 80){
+              result = `${name}, Your grade is B.`
+            }else if(marks<=80 && marks > 70){
+              result = `${name}, Your grade is C.`   
+            }else if(marks<=70 && marks >= 60){
+              result = `${name}, Your grade is D.`
+            }else if(marks < 60){
+              result = `${name}, you failed this course.` 
+            }else{
+              result = `Please enter valid input.`
+            }
+            document.getElementById("resultText").innerHTML = result;
+        }
+      </script>
+  </body>
+</html>
