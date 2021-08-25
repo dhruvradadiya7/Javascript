@@ -10,7 +10,7 @@ var con = mysql.createConnection({
 
 const app = express();
 
-app.listen(3306, () =>{
+app.listen(3307, () =>{
     console.log('server started on 3306');
 });
 

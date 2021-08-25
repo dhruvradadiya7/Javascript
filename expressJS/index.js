@@ -1,20 +1,21 @@
 const http = require("http");
-//npm install -g nodemon 
 //npm install --save express
 const express = require("express");
 //create express application
 const app = express();
 // MIddleware
-//Request--> Middleware(req,res,next) ==next()--> Middleware2> res.send()--> response
-app.use((req, res, next) => {
-  console.log("In the Middleware1");
- next(); // allows req to continue to next middleware in line
+app.use("/", (req, res, next) => {
+  console.log("This will alws run");
+  next();
 });
-// This is second middleware 
-app.use((req, res, next) => {
-  console.log("In the Middleware 2");
-  res.send("<h1>Hello from Express</h1>");
+app.use("/add-product", (req, res, next) => {
+  console.log("In the Middleware add product");
+  res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
   //Response won't send any default response so we have to add a response
 });
+app.get("/product", (req, res, next) => {
+  console.log(req.body);
+  res.redirect('/');
+});
 const server = http.createServer(app);
-server.listen(3306);
+server.listen(5000);
